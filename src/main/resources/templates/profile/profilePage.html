@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout/default">
+<head lang="pl">
+<title>Twój profil</title>
+</head>
+<body>
+	<div class="row" layout:fragment="content">
+		<h2 class="indigo-text center">Informacje osobiste</h2>
+		<form th:action="@{/profile}" th:object="${profileForm}" method="post"
+			class="col m8 s12 offset-m2">
+			<div class="row">
+				<div class="input-field col s6">
+					<input th:field="${profileForm.twitterHandle}" id="twitterHandle"
+						type="text" th:errorclass="invalid" /> <label for="twitterHandle">Identyfikator
+						Twitter</label>
+					<div th:errors="*{twitterHandle}" class="red-text">Błąd</div>
+				</div>
+				<div class="input-field col s6">
+					<input th:field="${profileForm.email}" id="email" type="email"
+						th:errorclass="invalid" /> <label for="email">Adres
+						e-mail</label>
+					<div th:errors="*{email}" class="red-text">Błąd</div>
+
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s6">
+					<input th:field="${profileForm.birthDate}" id="birthDate"
+						type="text" th:placeholder="${dateFormat}" th:errorclass="invalid" />
+					<label for="birthDate">Data urodzenia</label>
+				</div>
+			</div>
+			<div class="row s12">
+				<button class="btn waves-effect waves-light" type="submit"
+					name="save">
+					Wyślij <i class="material-icons right">send</i>
+				</button>
+			</div>
+		</form>
+	</div>
+</body>
+</html>

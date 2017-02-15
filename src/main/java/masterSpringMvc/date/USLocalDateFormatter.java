@@ -1,4 +1,4 @@
-package masterSpringMvc.USLocalDateFormatter;
+package masterSpringMvc.date;
 
 import java.text.ParseException;
 import java.time.LocalDate;

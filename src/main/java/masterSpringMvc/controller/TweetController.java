@@ -24,18 +24,18 @@ public class TweetController {
 	public String search() {
 		return "searchPage";
 	}
-	
-	@RequestMapping(value="/postSearch", method=RequestMethod.POST)
+
+	@RequestMapping(value = "/postSearch", method = RequestMethod.POST)
 	public String postSearch(HttpServletRequest request, RedirectAttributes redirectAttributes) {
 		String search = request.getParameter("search");
-		if(search.toLowerCase().contains("javascript")) {
+		if (search.toLowerCase().contains("javascript")) {
 			redirectAttributes.addFlashAttribute("error", "Spróbuj wpisać inne słowo!");
 			return "redirect:/";
 		}
 		redirectAttributes.addAttribute("search", search);
 		return "redirect:result";
 	}
-	
+
 	@RequestMapping("/result")
 	public String result(@RequestParam(defaultValue = "Michał Pietrzak") String search, Model model) {
 		SearchResults searchResults = twitter.searchOperations().search(search);

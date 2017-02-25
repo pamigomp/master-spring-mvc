@@ -1,4 +1,4 @@
-package masterSpringMvc;
+package masterSpringMvc.config;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.core.io.DefaultResourceLoader;

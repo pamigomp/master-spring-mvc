@@ -13,8 +13,15 @@ import masterSpringMvc.error.EntityNotFoundException;
 public class UserRepository {
 	private final Map<String, User> userMap = new ConcurrentHashMap<>();
 
+	public void reset(User... users) {
+		userMap.clear();
+		for (User user : users) {
+			save(user);
+		}
+	}
+
 	public User update(String email, User user) throws EntityNotFoundException {
-		if(!exists(email)) {
+		if (!exists(email)) {
 			throw new EntityNotFoundException("Użytkownik " + email + " nie istnieje");
 		}
 		user.setEmail(email);
@@ -26,7 +33,7 @@ public class UserRepository {
 	}
 
 	public User findOne(String email) throws EntityNotFoundException {
-		if(!exists(email)) {
+		if (!exists(email)) {
 			throw new EntityNotFoundException("Użytkownik " + email + " nie istnieje");
 		}
 		return userMap.get(email);
@@ -37,7 +44,7 @@ public class UserRepository {
 	}
 
 	public void delete(String email) throws EntityNotFoundException {
-		if(!exists(email)) {
+		if (!exists(email)) {
 			throw new EntityNotFoundException("Użytkownik " + email + " nie istnieje");
 		}
 		userMap.remove(email);

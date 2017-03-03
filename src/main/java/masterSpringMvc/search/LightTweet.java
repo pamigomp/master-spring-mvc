@@ -39,47 +39,23 @@ public class LightTweet {
 		return profileImageUrl;
 	}
 
-	public void setProfileImageUrl(String profileImageUrl) {
-		this.profileImageUrl = profileImageUrl;
-	}
-
 	public String getUser() {
 		return user;
-	}
-
-	public void setUser(String user) {
-		this.user = user;
 	}
 
 	public String getText() {
 		return text;
 	}
 
-	public void setText(String text) {
-		this.text = text;
-	}
-
 	public LocalDateTime getDate() {
 		return date;
-	}
-
-	public void setDate(LocalDateTime date) {
-		this.date = date;
 	}
 
 	public String getLang() {
 		return lang;
 	}
 
-	public void setLang(String lang) {
-		this.lang = lang;
-	}
-
 	public Integer getRetweetCount() {
 		return retweetCount;
-	}
-
-	public void setRetweetCount(Integer retweetCount) {
-		this.retweetCount = retweetCount;
 	}
 }

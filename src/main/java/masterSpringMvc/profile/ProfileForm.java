@@ -13,7 +13,6 @@ import org.hibernate.validator.constraints.NotEmpty;
 import masterSpringMvc.date.PastLocalDate;
 
 public class ProfileForm {
-
 	@Size(min = 2)
 	private String twitterHandle;
 
@@ -58,5 +57,11 @@ public class ProfileForm {
 
 	public void setTastes(List<String> tastes) {
 		this.tastes = tastes;
+	}
+
+	@Override
+	public String toString() {
+		return "ProfileForm [twitterHandle=" + twitterHandle + ", email=" + email + ", birthDate=" + birthDate
+				+ ", tastes=" + tastes + "]";
 	}
 }

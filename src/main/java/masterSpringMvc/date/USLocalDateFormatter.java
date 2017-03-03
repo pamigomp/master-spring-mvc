@@ -8,7 +8,6 @@ import java.util.Locale;
 import org.springframework.format.Formatter;
 
 public class USLocalDateFormatter implements Formatter<LocalDate> {
-
 	public static final String US_PATTERN = "MM/dd/yyyy";
 	public static final String NORMAL_PATTERN = "yyyy-MM-dd";
 

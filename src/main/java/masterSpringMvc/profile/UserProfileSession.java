@@ -36,7 +36,6 @@ public class UserProfileSession implements Serializable {
 		profileForm.setEmail(email);
 		profileForm.setBirthDate(birthDate);
 		profileForm.setTastes(tastes);
-
 		return profileForm;
 	}
 
@@ -50,5 +49,9 @@ public class UserProfileSession implements Serializable {
 
 	public List<String> getTastes() {
 		return tastes;
+	}
+
+	public void setTastes(List<String> tastes) {
+		this.tastes = tastes;
 	}
 }

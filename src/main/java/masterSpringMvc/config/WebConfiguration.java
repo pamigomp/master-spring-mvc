@@ -2,7 +2,6 @@ package masterSpringMvc.config;
 
 import java.time.LocalDate;
 
-import org.springframework.boot.context.embedded.ConfigurableEmbeddedServletContainer;
 import org.springframework.boot.context.embedded.EmbeddedServletContainerCustomizer;
 import org.springframework.boot.web.servlet.ErrorPage;
 import org.springframework.context.annotation.Bean;
@@ -30,6 +29,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @Configuration
 @EnableSwagger2
 public class WebConfiguration extends WebMvcConfigurerAdapter {
+
 	@Override
 	public void addFormatters(FormatterRegistry registry) {
 		registry.addFormatterForFieldType(LocalDate.class, new USLocalDateFormatter());
@@ -49,7 +49,7 @@ public class WebConfiguration extends WebMvcConfigurerAdapter {
 	}
 
 	@Bean
-	public LocaleChangeInterceptor localChangeInterceptor() {
+	public LocaleChangeInterceptor localeChangeInterceptor() {
 		LocaleChangeInterceptor localeChangeInterceptor = new LocaleChangeInterceptor();
 		localeChangeInterceptor.setParamName("lang");
 		return localeChangeInterceptor;
@@ -57,13 +57,7 @@ public class WebConfiguration extends WebMvcConfigurerAdapter {
 
 	@Bean
 	public EmbeddedServletContainerCustomizer containerCustomizer() {
-		EmbeddedServletContainerCustomizer embeddedServletContainerCustomizer = new EmbeddedServletContainerCustomizer() {
-			@Override
-			public void customize(ConfigurableEmbeddedServletContainer container) {
-				container.addErrorPages(new ErrorPage(MultipartException.class, "/uploadError"));
-			}
-		};
-		return embeddedServletContainerCustomizer;
+		return container -> container.addErrorPages(new ErrorPage(MultipartException.class, "/uploadError"));
 	}
 
 	@Bean
@@ -73,7 +67,7 @@ public class WebConfiguration extends WebMvcConfigurerAdapter {
 
 	@Bean
 	@Primary
-	public ObjectMapper ObjectMapper(Jackson2ObjectMapperBuilder builder) {
+	public ObjectMapper objectMapper(Jackson2ObjectMapperBuilder builder) {
 		ObjectMapper objectMapper = builder.createXmlMapper(false).build();
 		objectMapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
 		return objectMapper;
@@ -81,6 +75,6 @@ public class WebConfiguration extends WebMvcConfigurerAdapter {
 
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
-		registry.addInterceptor(localChangeInterceptor());
+		registry.addInterceptor(localeChangeInterceptor());
 	}
 }

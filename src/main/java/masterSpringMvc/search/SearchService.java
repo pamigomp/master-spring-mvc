@@ -9,7 +9,7 @@ import org.springframework.social.twitter.api.Twitter;
 import org.springframework.stereotype.Service;
 
 @Service
-public class SearchService {
+public class SearchService implements TwitterSearch {
 	private Twitter twitter;
 
 	@Autowired
@@ -17,11 +17,15 @@ public class SearchService {
 		this.twitter = twitter;
 	}
 
+	@Override
 	public List<LightTweet> search(String searchType, List<String> keywords) {
 		List<SearchParameters> searches = keywords.stream().map(taste -> createSearchParam(searchType, taste))
 				.collect(Collectors.toList());
+
 		List<LightTweet> results = searches.stream().map(params -> twitter.searchOperations().search(params))
-				.flatMap(SearchResults -> SearchResults.getTweets().stream()).map(LightTweet::ofTweet).collect(Collectors.toList());
+				.flatMap(searchResults -> searchResults.getTweets().stream()).map(LightTweet::ofTweet)
+				.collect(Collectors.toList());
+
 		return results;
 	}
 

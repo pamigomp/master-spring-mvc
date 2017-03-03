@@ -16,11 +16,11 @@ public class HomeController {
 	public HomeController(UserProfileSession userProfileSession) {
 		this.userProfileSession = userProfileSession;
 	}
-	
+
 	@RequestMapping("/")
 	public String home() {
 		List<String> tastes = userProfileSession.getTastes();
-		if(tastes.isEmpty()) {
+		if (tastes.isEmpty()) {
 			return "redirect:/profile";
 		}
 		return "redirect:/search/mixed;keywords=" + String.join(",", tastes);

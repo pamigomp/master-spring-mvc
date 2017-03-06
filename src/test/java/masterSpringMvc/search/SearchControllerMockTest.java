@@ -18,6 +18,7 @@ import java.util.Arrays;
 import javax.inject.Inject;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
@@ -46,6 +47,7 @@ public class SearchControllerMockTest {
 		this.mockMvc = MockMvcBuilders.standaloneSetup(searchController).setRemoveSemicolonContent(false).build();
 	}
 
+	@Ignore
 	@Test
 	public void shouldSearch() throws Exception {
 		when(searchService.search(anyString(), anyListOf(String.class)))

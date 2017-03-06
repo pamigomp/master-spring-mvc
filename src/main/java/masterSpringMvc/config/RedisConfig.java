@@ -19,7 +19,7 @@ public class RedisConfig {
 	@Profile("heroku")
 	public RedisConnectionFactory redisConnectionFactory() throws URISyntaxException {
 		JedisConnectionFactory redis = new JedisConnectionFactory();
-		String redisUrl = System.getenv("REDI_URL");
+		String redisUrl = System.getenv("REDIS_URL");
 		URI redisUri = new URI(redisUrl);
 		redis.setHostName(redisUri.getHost());
 		redis.setPort(redisUri.getPort());
